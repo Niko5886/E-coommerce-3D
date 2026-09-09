@@ -220,8 +220,9 @@
                 background 980ms var(--retake-slow-ease);
   }
 
-  /* Glass material */
-  .glass { position: relative; }
+  /* Glass material — .track and .capsule are already position:absolute, which
+     establishes the containing block for these pseudo-elements. Do NOT set
+     position here or it overrides their absolute positioning. */
   .glass::before, .glass::after {
     content: "";
     position: absolute;
@@ -982,21 +983,31 @@
   }
 
   function animateChosenLabel(key) {
-    // chosen label travels to capsule centre
+    // chosen label travels to the capsule's FINAL centre. The capsule is still
+    // mid-collapse here, so aim at the known destination (controller centre on
+    // desktop) rather than the capsule's current animating rect. Record the
+    // button's untransformed centre so commit can re-target the settled capsule.
     var btn = BUTTONS[key];
-    // measure against capsule target centre
-    requestAnimationFrame(function () {
-      var capRect = capsule.getBoundingClientRect();
-      var btnRect = btn.getBoundingClientRect();
-      var dx = (capRect.left + capRect.width / 2) - (btnRect.left + btnRect.width / 2);
-      var dy = (capRect.top + capRect.height / 2) - (btnRect.top + btnRect.height / 2);
-      btn.style.transform = "translate(" + dx.toFixed(1) + "px," + dy.toFixed(1) + "px)";
-    });
+    var btnRect = btn.getBoundingClientRect();
+    btn._baseCX = btnRect.left + btnRect.width / 2;
+    btn._baseCY = btnRect.top + btnRect.height / 2;
+    var cRect = controller.getBoundingClientRect();
+    var dx = (cRect.left + cRect.width / 2) - btn._baseCX;
+    var dy = (cRect.top + cRect.height / 2) - btn._baseCY;
+    btn.style.transform = "translate(" + dx.toFixed(1) + "px," + dy.toFixed(1) + "px)";
   }
 
   function commitSelected(key, hadFocus) {
     var btn = BUTTONS[key];
-    btn.style.transform = "translate(0,0)"; // it now sits centered in capsule
+    // Re-target the now-settled capsule so "Reset" is centred on every breakpoint.
+    var capRect = capsule.getBoundingClientRect();
+    var baseCX = (typeof btn._baseCX === "number") ? btn._baseCX
+      : (btn.getBoundingClientRect().left + btn.getBoundingClientRect().width / 2);
+    var baseCY = (typeof btn._baseCY === "number") ? btn._baseCY
+      : (btn.getBoundingClientRect().top + btn.getBoundingClientRect().height / 2);
+    var dx = (capRect.left + capRect.width / 2) - baseCX;
+    var dy = (capRect.top + capRect.height / 2) - baseCY;
+    btn.style.transform = "translate(" + dx.toFixed(1) + "px," + dy.toFixed(1) + "px)";
     setButtonLabel(btn, "Reset", true);
     btn.disabled = false;                    // Reset must be actionable
     // other buttons: disabled, aria-hidden, tabindex -1
