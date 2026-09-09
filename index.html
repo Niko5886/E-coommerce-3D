@@ -141,7 +141,7 @@
     width: 100%;
     z-index: 30;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr;
     align-items: center;
     padding: calc(58px + env(safe-area-inset-top)) 40px 40px;
     text-shadow: 0 1px 6px rgb(0 0 0 / 0.18);
@@ -157,7 +157,7 @@
   /* Nik*S wordmark — mirrors the old LTX mark's language: bold, white, tight tracking. */
   .brand .wordmark {
     font-family: 'Manrope', system-ui, sans-serif;
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1;
@@ -171,15 +171,11 @@
     font-weight: 600;
     transform: translateY(0.08em);
   }
-
-  .meta {
-    display: inline-flex;
-    align-items: center;
-    margin-left: clamp(48px, 5vw, 70px);
-    gap: clamp(28px, 3vw, 44px);
-    font-size: 18px;
-    line-height: 1.2;
-    letter-spacing: -0.04em;
+  .brand .tagline {
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-left: 0.14em;
+    opacity: 0.92;
   }
 
   .try-now {
@@ -403,16 +399,13 @@
   /* ─────────────────────────────  RESPONSIVE  ───────────────────────────── */
   @media (max-width: 900px) {
     header { padding: calc(24px + env(safe-area-inset-top)) 24px 24px; }
-    .meta { font-size: 14px; gap: 22px; margin-left: 34px; }
     .try-now { width: 116px; height: 36px; font-size: 14px; }
     .cell { font-size: clamp(17px, 2.5vw, 24px); }
   }
 
   @media (max-width: 700px) {
     header { padding-left: 18px; padding-right: 18px; }
-    .brand .wordmark { font-size: 22px; }
-    .meta { font-size: 12px; }
-    .meta .secondary { display: none; }
+    .brand .wordmark { font-size: 20px; }
     .try-now {
       position: relative;
       width: 92px; height: 34px; font-size: 13px;
@@ -551,12 +544,8 @@
     <!-- ─────────── HEADER ─────────── -->
     <header>
       <a class="brand" href="#" aria-label="Nik*S home">
-        <span class="wordmark">Nik<span class="star">*</span>S</span>
+        <span class="wordmark">Nik<span class="star">*</span>S <span class="tagline">is here</span></span>
       </a>
-      <div class="meta">
-        <span class="primary">Nik*S is here</span>
-        <span class="secondary">Nik*S is here</span>
-      </div>
       <a class="try-now" href="https://app.ltx.io/" target="_blank" rel="noopener noreferrer">Try now</a>
     </header>
 
