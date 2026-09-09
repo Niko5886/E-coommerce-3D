@@ -152,8 +152,25 @@
   .brand {
     display: inline-flex;
     align-items: center;
+    text-decoration: none;
   }
-  .brand svg { height: 24px; width: auto; display: block; }
+  /* Nik*S wordmark — mirrors the old LTX mark's language: bold, white, tight tracking. */
+  .brand .wordmark {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: #fff;
+    white-space: nowrap;
+    display: inline-block;
+  }
+  .brand .star {
+    display: inline-block;
+    margin: 0 0.01em;
+    font-weight: 600;
+    transform: translateY(0.08em);
+  }
 
   .meta {
     display: inline-flex;
@@ -393,7 +410,7 @@
 
   @media (max-width: 700px) {
     header { padding-left: 18px; padding-right: 18px; }
-    .brand svg { height: 21px; }
+    .brand .wordmark { font-size: 22px; }
     .meta { font-size: 12px; }
     .meta .secondary { display: none; }
     .try-now {
@@ -533,16 +550,12 @@
 
     <!-- ─────────── HEADER ─────────── -->
     <header>
-      <a class="brand" href="#" aria-label="LTX home">
-        <svg viewBox="0 0 75 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-          <path fill="#fff" d="M0 4h5.4v18.6H16V27H0V4Z"/>
-          <path fill="#fff" d="M18.8 8.4H24v18.6h-5.2V8.4ZM16.6 4h9.6v4.4h-9.6V4Z"/>
-          <path fill="#fff" d="m52.2 27-5.9-8.2L40.4 27h-6.2l9-12-8.3-11h6.3l5.3 7.4L57 4h6.2l-8.2 10.9L64 27h-6.3l-5.5.0Z"/>
-        </svg>
+      <a class="brand" href="#" aria-label="Nik*S home">
+        <span class="wordmark">Nik<span class="star">*</span>S</span>
       </a>
       <div class="meta">
-        <span class="primary">LTX-2.5 is here</span>
-        <span class="secondary">Smarter. Faster</span>
+        <span class="primary">Nik*S is here</span>
+        <span class="secondary">Nik*S is here</span>
       </div>
       <a class="try-now" href="https://app.ltx.io/" target="_blank" rel="noopener noreferrer">Try now</a>
     </header>
