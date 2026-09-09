@@ -15,6 +15,9 @@
     --cap-width: calc(20% + 5px);
     --glass-x: 24%;
     --glass-y: 8%;
+    /* Shared muted ink for the "is here" kicker and the bottom-right credit,
+       so both render 1:1. This is the soft blue the brand kicker already uses. */
+    --sig-ink: #0000ee;
   }
 
   *, *::before, *::after { box-sizing: border-box; }
@@ -199,6 +202,7 @@
     text-transform: uppercase;
     letter-spacing: 0.2em;
     line-height: 1;
+    color: var(--sig-ink);
     opacity: 0.6;
   }
 
@@ -400,7 +404,7 @@
     display: inline-flex;
     align-items: baseline;
     gap: 0.55em;
-    color: #fff;
+    color: var(--sig-ink);
     opacity: 0.6;
     text-shadow: 0 1px 6px rgb(0 0 0 / 0.18);
     pointer-events: none;
