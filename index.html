@@ -390,6 +390,36 @@
     pointer-events: none;
   }
 
+  /* ─────────────────────────────  CREDIT  ─────────────────────────────
+     Subtle bottom-right signature, matching the "is here" muted white. */
+  .credit {
+    position: absolute;
+    right: calc(30px + env(safe-area-inset-right));
+    bottom: calc(24px + env(safe-area-inset-bottom));
+    z-index: 30;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.55em;
+    color: #fff;
+    opacity: 0.6;
+    text-shadow: 0 1px 6px rgb(0 0 0 / 0.18);
+    pointer-events: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+            user-select: none;
+  }
+  .credit-kicker {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+  .credit-name {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
   /* ─────────────────────────────  NOTICE  ───────────────────────────── */
   .notice {
     position: absolute;
@@ -430,6 +460,9 @@
   @media (max-width: 700px) {
     header { padding-left: 18px; padding-right: 18px; }
     .brand .wordmark { font-size: 20px; }
+    .credit { right: 16px; bottom: 16px; opacity: 0.5; }
+    .credit-kicker { font-size: 9px; }
+    .credit-name { font-size: 11px; }
     .try-now {
       position: relative;
       width: 92px; height: 34px; font-size: 13px;
@@ -573,6 +606,9 @@
       </a>
       <a class="try-now" href="https://app.ltx.io/" target="_blank" rel="noopener noreferrer">Try now</a>
     </header>
+
+    <!-- ─────────── CREDIT ─────────── -->
+    <div class="credit"><span class="credit-kicker">Powered by</span> <span class="credit-name">N. Stoyanov</span></div>
 
     <!-- ─────────── STATUS + NOTICE ─────────── -->
     <div class="visually-hidden" id="status" role="status" aria-live="polite"></div>
