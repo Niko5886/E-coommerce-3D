@@ -165,17 +165,41 @@
     white-space: nowrap;
     display: inline-block;
   }
-  .brand .star {
+  /* AI "spark" — the wordmark's kinetic device. Gradient reuses the glass edge
+     accent (cyan -> violet -> pink) so it belongs to the same visual language. */
+  .brand .spark {
     display: inline-block;
-    margin: 0 0.01em;
-    font-weight: 600;
-    transform: translateY(0.08em);
+    width: 0.82em;
+    height: 0.82em;
+    margin: 0 0.04em;
+    vertical-align: 0.02em;
+    animation: spark-rot 9s linear infinite;
+    will-change: transform;
   }
+  .brand .spark svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 2.5px rgb(150 210 255 / 0.5));
+    animation: spark-tw 3.6s var(--retake-ease) infinite;
+  }
+  .brand:hover .spark, .brand:focus-visible .spark { animation-duration: 2.4s; }
+  .brand:hover .spark svg, .brand:focus-visible .spark svg {
+    filter: drop-shadow(0 0 8px rgb(180 139 255 / 0.85));
+  }
+  @keyframes spark-rot { to { transform: rotate(360deg); } }
+  @keyframes spark-tw { 0%, 100% { transform: scale(1); } 50% { transform: scale(0.82); } }
+
+  /* Uppercase kicker — a modern lockup descriptor beside the wordmark.
+     Sibling flex item, vertically centred against the wordmark by align-items. */
   .brand .tagline {
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    margin-left: 0.14em;
-    opacity: 0.92;
+    margin-left: 13px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    line-height: 1;
+    opacity: 0.6;
   }
 
   .try-now {
@@ -502,6 +526,7 @@
     .stage.title-hidden .hero h1 span { filter: none; }
     .controller.collapsed .cell.faded-label { filter: none; }
     .cell.reset-label.revealing { animation-duration: 1ms; }
+    .brand .spark, .brand .spark svg { animation: none !important; }
   }
 </style>
 </head>
@@ -543,8 +568,8 @@
 
     <!-- ─────────── HEADER ─────────── -->
     <header>
-      <a class="brand" href="#" aria-label="Nik*S home">
-        <span class="wordmark">Nik<span class="star">*</span>S <span class="tagline">is here</span></span>
+      <a class="brand" href="#" aria-label="Nik*S — is here">
+        <span class="wordmark">Nik<span class="spark" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="nikSpark" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#7fe3ff"/><stop offset="0.5" stop-color="#b48bff"/><stop offset="1" stop-color="#ff9ecf"/></linearGradient></defs><path d="M12 2.2l2.35 7.05a2.2 2.2 0 0 0 1.4 1.4L22.8 12l-7.05 2.35a2.2 2.2 0 0 0-1.4 1.4L12 22.8l-2.35-7.05a2.2 2.2 0 0 0-1.4-1.4L1.2 12l7.05-2.35a2.2 2.2 0 0 0 1.4-1.4L12 2.2z" fill="url(#nikSpark)"/></svg></span>S</span><span class="tagline">is here</span>
       </a>
       <a class="try-now" href="https://app.ltx.io/" target="_blank" rel="noopener noreferrer">Try now</a>
     </header>
