@@ -29,9 +29,13 @@
     background: #000;
     color: #fff;
     overflow-x: hidden;
+    cursor: default;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  /* Only interactive elements show the pointer; no text I-beam over labels/copy. */
+  a, button:not(:disabled) { cursor: pointer; }
 
   ::selection { background: rgba(255, 255, 255, 0.2); }
 
