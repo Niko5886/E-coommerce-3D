@@ -96,7 +96,7 @@
     transform: translateX(-50%);
     width: min(901px, calc(100vw - 48px));
     margin: 0;
-    font-size: clamp(62px, 6.8vw, 100px);
+    font-size: clamp(41px, 4.5vw, 67px);
     font-weight: 500;
     line-height: 0.8;
     letter-spacing: -0.04em;
@@ -114,6 +114,7 @@
   .hero h1 span:nth-child(1) { transition-delay: 0ms; }
   .hero h1 span:nth-child(2) { transition-delay: 90ms; }
   .hero h1 span:nth-child(3) { transition-delay: 180ms; }
+  .hero h1 span:nth-child(4) { transition-delay: 270ms; }
 
   .stage.title-hidden .hero h1 span {
     opacity: 0;
@@ -465,7 +466,7 @@
     .hero h1 {
       top: 34%;
       width: calc(100vw - 40px);
-      font-size: clamp(48px, 14vw, 64px);
+      font-size: clamp(32px, 9.3vw, 43px);
       line-height: 0.88;
       white-space: normal;
     }
@@ -519,12 +520,12 @@
   }
 
   @media (max-height: 520px) and (orientation: landscape) {
-    .hero h1 { top: 20%; font-size: clamp(34px, 8vh, 56px); }
+    .hero h1 { top: 20%; font-size: clamp(23px, 5.3vh, 37px); }
     .controller { top: 50%; }
   }
 
   @media (max-width: 700px) and (max-height: 520px) and (orientation: landscape) {
-    .hero h1 { top: 12%; font-size: clamp(28px, 7vh, 44px); }
+    .hero h1 { top: 12%; font-size: clamp(19px, 4.7vh, 29px); }
     .controller { top: 46%; height: 118px; }
     .track { height: 118px; }
     .cells { grid-template-rows: 36px 41px 41px; }
@@ -563,7 +564,7 @@
 
     <!-- ─────────── HERO ─────────── -->
     <div class="hero">
-      <h1><span>The</span> <span>world</span> <span>model</span></h1>
+      <h1><span>I</span> <span>am</span> <span>the</span> <span>future</span></h1>
     </div>
 
     <!-- ─────────── CONTROLLER ─────────── -->
