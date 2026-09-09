@@ -344,17 +344,11 @@
   }
   button.cell:disabled { cursor: default; }
 
-  .cell.reset-label {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-thickness: 1px;
-  }
-
   @keyframes reset-reveal {
     from { opacity: 0; filter: blur(10px); }
     to   { opacity: 1; filter: blur(0); }
   }
-  .cell.reset-label.revealing {
+  .cell.revealing {
     animation: reset-reveal 520ms var(--retake-ease) forwards;
   }
 
@@ -540,7 +534,7 @@
     }
     .stage.title-hidden .hero h1 span { filter: none; }
     .controller.collapsed .cell.faded-label { filter: none; }
-    .cell.reset-label.revealing { animation-duration: 1ms; }
+    .cell.revealing { animation-duration: 1ms; }
     .brand .spark, .brand .spark svg { animation: none !important; }
   }
 </style>
@@ -934,7 +928,7 @@
         playback = "ready";
         locked = false;
         commitSelected(key, hadFocus);
-        announce(ORIGINAL_LABEL[key] + " selected. Reset to return.");
+        announce(ORIGINAL_LABEL[key] + " selected. Back to return.");
       })
       .catch(function (err) {
         if (token !== myToken) return;
@@ -1018,7 +1012,7 @@
     setTimeout(function () {
       forEachButton(function (k, btn) {
         btn.classList.remove("faded-label");
-        // revert chosen label text back from Reset
+        // revert chosen label text back from Back
         if (btn.getAttribute("data-key") === key) {
           setButtonLabel(btn, ORIGINAL_LABEL[key], false);
         }
@@ -1047,7 +1041,7 @@
 
   function commitSelected(key, hadFocus) {
     var btn = BUTTONS[key];
-    // Re-target the now-settled capsule so "Reset" is centred on every breakpoint.
+    // Re-target the now-settled capsule so "Back" is centred on every breakpoint.
     var capRect = capsule.getBoundingClientRect();
     var baseCX = (typeof btn._baseCX === "number") ? btn._baseCX
       : (btn.getBoundingClientRect().left + btn.getBoundingClientRect().width / 2);
@@ -1056,8 +1050,8 @@
     var dx = (capRect.left + capRect.width / 2) - baseCX;
     var dy = (capRect.top + capRect.height / 2) - baseCY;
     btn.style.transform = "translate(" + dx.toFixed(1) + "px," + dy.toFixed(1) + "px)";
-    setButtonLabel(btn, "Reset", true);
-    btn.disabled = false;                    // Reset must be actionable
+    setButtonLabel(btn, "Back", true);
+    btn.disabled = false;                    // Back must be actionable
     // other buttons: disabled, aria-hidden, tabindex -1
     forEachButton(function (k, b) {
       if (k !== key) {
@@ -1092,10 +1086,10 @@
   function setButtonLabel(btn, text, isReset) {
     btn.textContent = text;
     if (isReset) {
-      btn.classList.add("reset-label", "revealing");
+      btn.classList.add("revealing");
       setTimeout(function () { btn.classList.remove("revealing"); }, 560);
     } else {
-      btn.classList.remove("reset-label", "revealing");
+      btn.classList.remove("revealing");
     }
   }
 
